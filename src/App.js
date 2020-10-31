@@ -1,23 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
+import TabNavBar from './components/tab_nav_bar/tab_nav_bar'
+import TabView from './components/tab_view/tab_view'
+import { useState } from 'react';
 
 function App() {
+
+  const [tabs, setTabs] = useState([
+    {id: 1,
+    content: 'tab1 context'},
+    {id: 2,
+    content: 'tab2 context'},
+    {id: 3,
+    content: 'tab3 context'},
+    {id: 4,
+    content: 'tab4 context'}
+  ])
+
+  const [tab, setTab] = useState(1)
+
+  const tabClick = (tab_id) => {
+    setTab(tab_id)
+    
+  }
+  console.log('tab: ', tab)
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TabNavBar tabs={tabs} tabClick={tabClick}/>
+      <TabView tabs={tabs} current_tab={tab}/>
     </div>
   );
 }
